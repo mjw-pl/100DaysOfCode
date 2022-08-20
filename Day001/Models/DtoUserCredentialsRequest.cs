@@ -2,7 +2,7 @@
 
 namespace Day001.Models
 {
-    public class DtoUserCredentialsRequest
+    public record DtoUserCredentialsRequest
     {
         [Required]
         public string username { get; set; }
