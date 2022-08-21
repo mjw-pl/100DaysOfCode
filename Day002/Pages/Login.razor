@@ -1,0 +1,51 @@
+﻿@page "/login"
+@inject IAuthenticationService AuthService
+
+<PageTitle>Login</PageTitle>
+
+<h3>Login in</h3>
+
+<span>@_msg</span>
+<span>@_errorMsg</span>
+
+
+@code {
+
+    private string? _errorMsg { get; set; }
+    private string? _msg { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var credentials = new DtoUserLoginRequest
+            {
+                username = "Mario",
+                password = "p@ss"
+            };
+
+        var success = false;
+        
+        try
+        {
+            success = await AuthService.Login(credentials);
+        }
+        catch (HttpRequestException ex)
+        {
+            _errorMsg = "Network error";
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            _errorMsg = $"Authentication error";
+        }
+        catch (Exception e)
+        {
+            _errorMsg = $"Whatever: {e.Message}";
+        }
+
+        if (success)
+        {
+            _msg = "Logged in";
+        }
+        
+    }
+
+}

@@ -1,0 +1,44 @@
+﻿@page "/"
+
+
+<PageTitle>Index</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <p>Welcome back @context.User.Identity.Name</p>
+    </Authorized>
+
+    <NotAuthorized>
+        <p>You're not logged in</p>
+    </NotAuthorized>
+
+</AuthorizeView>
+
+<AuthorizeView Roles="admin">
+    <Authorized>
+        <p>✔ Role of the administrator</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>❌ You're not an admin</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="supervisor">
+    <Authorized>
+        <p>✔ Role of the supervisor</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>❌ You're not a supervisor</p>
+    </NotAuthorized>
+
+</AuthorizeView>
+
+<AuthorizeView Roles="datasteward">
+    <Authorized>
+        <p>✔ Role of the data steward</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>❌ You're not a data steward</p>
+    </NotAuthorized>
+
+</AuthorizeView>

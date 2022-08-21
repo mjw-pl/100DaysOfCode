@@ -1,0 +1,25 @@
+﻿@page "/logout"
+@inject IAuthenticationService AuthService
+
+<PageTitle>Login</PageTitle>
+
+<h3>Login out</h3>
+
+<span>@_msg</span>
+
+@code {
+    
+    private string? _msg { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var success = await AuthService.Logout();
+
+        if (success)
+        {
+            _msg = "Logged out";
+        }
+        
+    }
+    
+}
