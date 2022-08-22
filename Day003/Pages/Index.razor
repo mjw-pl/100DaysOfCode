@@ -1,0 +1,32 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components
+@using Day003.Models
+
+<PageTitle>Index</PageTitle>
+
+<EditForm Model="@_person">
+    <DataAnnotationsValidator />
+    
+         <div class="form-group row">
+             <label for="fullname" class="col-md-2 col-form-label">Fullname:</label>
+             <div class="col-md-5">
+                 <InputText @bind-Value="_person.Fullname" name="fullname"></InputText>
+                 <ValidationMessage For="@(() => _person.Fullname)" />
+             </div>
+         </div>
+    
+    <div class="form-group row">
+        <label for="pesel" class="col-md-2 col-form-label">Pesel:</label>
+        <div class="col-md-5">
+            <InputText @bind-Value="_person.Pesel" name="pesel"></InputText>
+            <ValidationMessage For="@(() => _person.Pesel)" />
+        </div>
+    </div>
+    
+    <input type="submit" class="btn btn-primary" value="Save"/>
+</EditForm>
+
+@code
+{
+    private Person _person = new Person();
+}
